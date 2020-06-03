@@ -24,4 +24,4 @@ after_success:
   - docker push travis/multi-client
   - docker push travis/multi-nginx
   - docker push travis/multi-server
-  - docker push travis/multi-worker
+  - docker push travis/multi-worke
