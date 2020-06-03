@@ -15,8 +15,13 @@ before_install:
 script:
   - docker run travis/multi-docker1 npm run test -- --coverage
 
-#after_success:
+after_success:
   - docker build -t travis/multi-client ./client
   - docker build -t travis/multi-nginx ./nginx
   - docker build -t travis/multi-server ./server
   - docker build -t travis/multi-worker ./worker
+  - echo "$DOCKER_PASSWORD" | docker login -u "@DOCKER_ID" --password-stdin
+  - docker push travis/multi-client
+  - docker push travis/multi-nginx
+  - docker push travis/multi-server
+  - docker push travis/multi-worker
